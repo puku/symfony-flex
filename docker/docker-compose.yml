@@ -1,0 +1,42 @@
+version: '3.1'
+services:
+  nginx:
+    container_name: symfony-nginx
+    image: nginx
+    volumes:
+      - "../:/app"
+      - "./etc/nginx/app.conf:/etc/nginx/conf.d/default.conf"
+    ports:
+     - 80:80
+    depends_on:
+      - php
+      - mysql
+    restart: always
+  php:
+    container_name: symfony-php
+    build: php
+    volumes:
+      - "../:/app"
+      - "./etc/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
+    restart: always
+    working_dir: /app
+  composer:
+    container_name: composer
+    image: composer
+    command: composer update
+    volumes:
+      - "../:/app"
+    depends_on:
+      - php
+  mysql:
+    image: mysql
+    container_name: mysql-symfony
+    ports:
+        - 32770:3306
+    volumes:
+        - "./.data/db:/var/lib/mysql"
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}

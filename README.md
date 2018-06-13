@@ -3,6 +3,11 @@ Symfony Educational Application
 
 This repository was created to start learning symfony in advance. 
 
+
+[![Build Status](https://travis-ci.org/puku/symfony-flex.svg?branch=master)](https://travis-ci.org/puku/symfony-flex)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9e331840609363f66fe1/maintainability)](https://codeclimate.com/github/puku/symfony-flex/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9e331840609363f66fe1/test_coverage)](https://codeclimate.com/github/puku/symfony-flex/test_coverage)
+
 Usage
 -----
 

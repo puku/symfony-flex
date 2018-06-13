@@ -18,7 +18,6 @@ before_install:
 
 install:
   - composer install
-  - ./vendor/bin/simple-phpunit install
 
 script:
   # this checks that the source code follows the Symfony Code Syntax rules

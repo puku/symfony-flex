@@ -20,14 +20,6 @@ services:
       - "./etc/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
     restart: always
     working_dir: /app
-  composer:
-    container_name: composer
-    image: composer
-    command: composer update
-    volumes:
-      - "../:/app"
-    depends_on:
-      - php
   mysql:
     image: mysql
     container_name: mysql-symfony

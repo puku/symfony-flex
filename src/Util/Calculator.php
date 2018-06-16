@@ -8,12 +8,12 @@ namespace App\Util;
 class Calculator
 {
     /**
-     * @param float $a
-     * @param float $b
+     * @param int $a
+     * @param int $b
      *
-     * @return float
+     * @return int
      */
-    public function add(float $a, float $b): float
+    public function add(int $a, int $b): int
     {
         return $a + $b;
     }

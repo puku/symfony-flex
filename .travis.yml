@@ -9,6 +9,7 @@ env:
   global:
     - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
     - SYMFONY_PHPUNIT_VERSION="6.3"
+    - CC_TEST_REPORTER_ID=73d3625ea7358e3342c60e20c92760d77a2c77e4a8be48fbab80027a7ce98433
 
 php:
 - 7.2
@@ -19,8 +20,13 @@ before_install:
 install:
   - composer install
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
-  - ./vendor/bin/simple-phpunit
+  - ./vendor/bin/simple-phpunit --coverage-clover clover.xml
   # this checks that the source code follows the Symfony Code Syntax rules
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
   # this checks that the YAML config files contain no syntax errors
@@ -35,3 +41,6 @@ script:
   - composer validate --strict
   # this checks that Doctrine's mapping configurations are valid
   #- ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+
+after_script:
+  - ./cc-test-reporter after-build --coverage-input-type clover --id 12345 --exit-code $TRAVIS_TEST_RESULT

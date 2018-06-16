@@ -2,13 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class DefaultController
- * @package App\Controller
+ * Class DefaultController.
  */
 class DefaultController extends Controller
 {
